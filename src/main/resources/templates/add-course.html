@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Add Course</title>
+</head>
+<body>
+<h1>Add Course</h1>
+<form th:action="@{/teacher/course/add}" th:object="${course}" method="post">
+  Name: <input type="text" th:field="*{name}"/><br/>
+  Department:
+  <select th:field="*{department}">
+    <option th:each="d : ${departments}" th:value="${d}" th:text="${d.name}"></option>
+  </select><br/>
+  <button type="submit">Add</button>
+</form>
+<a th:href="@{/teacher/dashboard}">Back</a>
+</body>
+</html>

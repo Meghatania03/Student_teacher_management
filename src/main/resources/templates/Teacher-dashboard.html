@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Teacher Dashboard</title>
+</head>
+<body>
+<h1>Teacher Dashboard</h1>
+<div th:if="${teacher != null}">
+  <p>Welcome, <span th:text="${teacher.name}"></span></p>
+  <p>Email: <span th:text="${teacher.email}"></span></p>
+</div>
+
+<h2>Students</h2>
+<a th:href="@{/teacher/student/add}">Add Student</a>
+<table border="1">
+  <tr>
+    <th>ID</th><th>Name</th><th>Email</th><th>Department</th><th>Actions</th>
+  </tr>
+  <tr th:each="student : ${students}">
+    <td th:text="${student.id}"></td>
+    <td th:text="${student.name}"></td>
+    <td th:text="${student.email}"></td>
+    <td th:text="${student.department?.name}"></td>
+    <td>
+      <a th:href="@{/teacher/student/edit/{id}(id=${student.id})}">Edit</a>
+      <a th:href="@{/teacher/student/delete/{id}(id=${student.id})}">Delete</a>
+    </td>
+  </tr>
+</table>
+
+<h2>Teachers</h2>
+<a th:href="@{/teacher/teacher/add}">Add Teacher</a>
+<table border="1">
+  <tr>
+    <th>ID</th><th>Name</th><th>Email</th><th>Department</th><th>Actions</th>
+  </tr>
+  <tr th:each="teacher : ${teachers}">
+    <td th:text="${teacher.id}"></td>
+    <td th:text="${teacher.name}"></td>
+    <td th:text="${teacher.email}"></td>
+    <td th:text="${teacher.department?.name}"></td>
+    <td>
+      <a th:href="@{/teacher/teacher/edit/{id}(id=${teacher.id})}">Edit</a>
+      <a th:href="@{/teacher/teacher/delete/{id}(id=${teacher.id})}">Delete</a>
+    </td>
+  </tr>
+</table>
+
+<h2>Departments</h2>
+<a th:href="@{/teacher/department/add}">Add Department</a>
+<table border="1">
+  <tr><th>ID</th><th>Name</th></tr>
+  <tr th:each="dept : ${departments}">
+    <td th:text="${dept.id}"></td>
+    <td th:text="${dept.name}"></td>
+  </tr>
+</table>
+
+<h2>Courses</h2>
+<a th:href="@{/teacher/course/add}">Add Course</a>
+<table border="1">
+  <tr><th>ID</th><th>Name</th><th>Department</th></tr>
+  <tr th:each="course : ${courses}">
+    <td th:text="${course.id}"></td>
+    <td th:text="${course.name}"></td>
+    <td th:text="${course.department?.name}"></td>
+  </tr>
+</table>
+
+</body>
+</html>
+
+
